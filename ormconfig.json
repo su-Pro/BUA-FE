@@ -1,0 +1,11 @@
+{
+  "type": "mysql",
+  "host": "175.24.132.203",
+  "port": 3306,
+  "username": "root",
+  "password": "Spy960820_",
+  "database": "bua_real",
+  "entities": ["src/entity/*.ts"],
+  "logging": ["query", "error"],
+  "synchronize": false
+}

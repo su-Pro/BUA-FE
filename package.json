@@ -20,7 +20,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "db:generator": "typeorm-model-generator -h 175.24.132.203 -d bua -p 3306 -u root -x Spy960820_ -e mysql -o src/entity/test --noConfig true --ce pascal --cp camel"
+    "db:generator": "typeorm-model-generator -h 175.24.132.203 -d bua_real -p 3306 -u root -x Spy960820_ -e mysql -o src/entity/test --noConfig true --cp snake"
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",
