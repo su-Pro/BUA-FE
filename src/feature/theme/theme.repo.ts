@@ -1,6 +1,8 @@
 import { Theme } from '../../entity/Theme';
 import { EntityRepository, Repository } from 'typeorm';
 import { ThemeByNamesDTO } from './dto/ThemeByNames.dto';
+import { _httpException } from '../../core/exception/http.excetion';
+import { ErrorThemeByNamesDB } from '../../constants/http.errror';
 
 
 
@@ -14,7 +16,7 @@ export class ThemeRepo extends Repository<Theme> {
         themeList = await query.getMany();
     } catch (e) {
     //  XXX: 数据库操作异常处理如何做？是否每一个数据操作都要 tryC？
-    //  抛出异常
+    throw new _httpException(new ErrorThemeByNamesDB())
     }
     return themeList;
   }

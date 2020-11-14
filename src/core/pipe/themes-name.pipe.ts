@@ -1,26 +1,22 @@
 import { ArgumentMetadata, BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
+import { _httpException } from '../exception/http.excetion';
+import { ErrorThemeByNamesParams } from '../../constants/http.errror';
 
 @Injectable()
 export class ThemesNamePipe implements PipeTransform {
   async transform(value: string, { metatype }: ArgumentMetadata) {
-    if(!metatype || !this.toValidate(metatype)) {
-      // TODO: 错误提取
-      throw new Error('error')
+    if(!metatype || !this.toValidate(metatype) || !value) {
+      throw new _httpException(new ErrorThemeByNamesParams())
     }
     // 转化成数组形式
-    let translateValue: string [];
-    try {
-     translateValue = value.split(",")
-    }catch (e) {
+    const translateValue = value.split(",")
     //  如果转化数组出错，依然抛出异常提示参数有误
-      throw new Error("error")
-    }
     const object = plainToClass(metatype, translateValue);
     const errors = await validate(object);
     if (errors.length > 0) {
-      throw new Error("error")
+      throw new _httpException(new ErrorThemeByNamesParams())
     }
     return translateValue;
   }
