@@ -2,7 +2,7 @@
 
 ## 需求分析
 
-从需求分析我们可以找到准确的需求点，从准确的数据库进行设计（一个人干活的悲伤）以及业务代码的编写。
+该环节主要是准确的需求点以便能够准确对数据库进行设计（一个人干活的悲伤）以及思考如何编写业务代码。
 
 ### 提炼功能
 
@@ -18,7 +18,7 @@
 
 #### 关系
 
-上面分析不难发现与theme有关联的实体是**餐品**，一个theme是可以对应多个餐品的，并且一个餐品可以对应多个主题。
+通过上面功能分析不难发现与theme有关联的实体是**餐品**，一个theme是可以对应多个餐品的，并且一个餐品可以对应多个主题。
 
 因此这里主题和餐品属于**多对多**关系，但由于餐品实体在电商系统中与其关联的实体较多且复杂，因此我们稍后在设计商品系统中进行。
 
@@ -43,31 +43,7 @@ charset = utf8mb4;
 
 ## RD
 
-
-### 接口约定
-
-#### 获取一组theme
-
-`v1/theme/by/names`
-
-```json
-req: query参数names=x,y,z
-
-res:
-
-```
-
-
-#### 获取某个theme并携带spu_list
-
-```json
-req:
-
-res:
-
-```
-
-### 数据模块（entity、repo）
+### 数据层（entity、repo）
 
 使用ORM的好处就是在于方便的操作数据库，其关键在于entity描述了真实的数据库中的表和字段。
 
@@ -125,6 +101,28 @@ async findByNames(names: ThemeByNamesDTO): Promise<Theme []> {
 
 - [ ] mySQL如何处理数组参数的WHERE查询？
 
+### 接口约定
+
+#### 获取一组theme
+
+`v1/theme/by/names`
+
+```json
+req: query参数names=x,y,z
+
+res:
+
+```
+
+#### 获取某个theme并携带spu_list
+
+```json
+req:
+
+res:
+
+```
+
 ### service
 
 我对service层的职责理解就是对业务进行处理后交给repo进行事务操作，而后将数据返回给controller。由于查询一组theme业务较为简单，这里直接return `repo.findByNames`即可。
@@ -146,6 +144,8 @@ async findByNames(names: ThemeByNamesDTO): Promise<Theme []> {
 > 关于RD部分我已经将按照每篇文章的顺序进行编写，尽量在一定程度上不去贴代码，更多的是记录和分享自己的实现思考过程。
 >
 > 以后的每篇文章我在RD部分会贴出对应的分支，如果感兴趣的同学直接查阅源码即可。
+
+
 
 ## extra
 
