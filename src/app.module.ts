@@ -5,12 +5,14 @@ import { LoggerMiddleware } from './core/middleware/logger.middleware';
 import { Connection } from 'typeorm';
 import { TypeOrmCoreModule } from '@nestjs/typeorm/dist/typeorm-core.module';
 import { ThemeModule } from './feature/theme/theme.module';
+import { CategoryModule } from './feature/category/category.module';
 
 
 @Module({
   imports: [
     TypeOrmCoreModule.forRoot(),
     ThemeModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
