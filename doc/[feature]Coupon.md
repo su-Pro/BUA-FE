@@ -1,4 +1,4 @@
-# Theme
+# Coupon
 
 ## 需求分析
 
@@ -6,40 +6,32 @@
 
 ### 提炼功能
 
-#### 首页展示
+#### *优惠券领取
 
-提供用户展示首页图片，以及提供一个点击跳转到详情的行为。
+在优惠券领取页面，当用户点击领取优惠券时需要进行校验，满足如下条件才允许领取指定优惠券：
 
-#### theme详情
+- 是否拥有领取权限（用户身份）
+- 是否在活动时间范围内
+- 是否存在多次领取
 
-展示theme详细信息以及所关联的餐品列表
+#### 个人中心-优惠券查看
+
+在我的页面中，当用户点击优惠券后，需要展示如下状态的优惠券：
+
+- 未使用
+- 已过期
+- 已使用
+
+#### *核销
+
+当用户进行订单提交时，（假设使用了优惠券）需要对优惠券进行如下核实：
+
+- 用户是否拥有该优惠券并且状态为未使用？
+- 在满足品类要求的情况下是否达到使用条件（满金额）？
 
 ### 数据表设计
 
-#### 关系
 
-通过上面功能分析不难发现与theme有关联的实体是**餐品**，一个theme是可以对应多个餐品的，并且一个餐品可以对应多个主题。
-
-因此这里主题和餐品属于**多对多**关系，但由于餐品实体在电商系统中与其关联的实体较多且复杂，因此我们稍后在设计商品系统中进行。
-
->  延迟思考，先把和theme的关系记下来
-
-#### theme
-
-```mysql
-create table theme(
-    id int unsigned auto_increment primary key ,
-    name varchar(30) null comment '用于检索主题 -> CMS',
-    tpl_name varchar(30) null comment '创建模板主题 -> CMS',
-    title varchar(60) null comment '前端展示主题名称',
-    description varchar(255) null comment '前端展示描述信息',
-    entrance_img varchar(255) null comment '前端展示入口图片',
-    inner_top_img varchar(255) null comment '前端展示详情顶图',
-    title_img varchar(255) null comment '前端展示详情title文案图片',
-    online tinyint unsigned default 1 null comment '标识是否上线 -> CMS'
-)
-charset = utf8mb4;
-```
 
 ## RD
 
@@ -157,4 +149,3 @@ res:
 
 
 #### 全局异常层封装
-
