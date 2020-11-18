@@ -1,4 +1,4 @@
-export class CodeAndMsg {
+export interface CodeAndMsg {
   CODE: number;
   MESSAGE: string;
 }
@@ -27,4 +27,21 @@ export class ErrorSkuPaginationParams implements CodeAndMsg{
 export class ErrorLogin implements CodeAndMsg{
   CODE = 30001;
   MESSAGE = "获取openID失败"
+}
+
+export class ErrorCouponMiss implements CodeAndMsg{
+  CODE = 40001;
+  MESSAGE = "查询不到指定的优惠券"
+}
+export class ErrorCouponActivity implements CodeAndMsg{
+  CODE = 40002;
+  MESSAGE = "该优惠券领取的活动已结束"
+}
+export class ErrorCouponCollection implements CodeAndMsg{
+  CODE = 40003;
+  MESSAGE = "领取优惠券失败，稍后再试（数据库存入失败）"
+}
+export class ErrorCouponRepeat implements CodeAndMsg{
+  CODE = 40003;
+  MESSAGE = "领取优惠券失败，该用户不能重复领取"
 }

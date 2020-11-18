@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, UseGuards, ValidationPipe } from '@nestjs/common';
 import { TokenService } from './token.service';
 import { AuthGuard } from '@nestjs/passport';
-import { LoginDTO } from './Login.dto';
+import { LoginDTO } from './dto/Login.dto';
 
 @Controller('token')
 export class TokenController {

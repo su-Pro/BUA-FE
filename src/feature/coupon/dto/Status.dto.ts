@@ -5,5 +5,4 @@ export class StatusDTO {
   @IsNotEmpty()
   @IsIn([CouponStatus.AVAILABLE,CouponStatus.USED,CouponStatus.EXPIRED])
   status: string
-//  TODO: 这里需要配置一个枚举值
 }
