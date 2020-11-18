@@ -12,8 +12,6 @@ Coupon实体主要的功能如下：
 
 ### 用户
 
-
-
 多对多，第三张表维护优惠券当前状态、用户使用的订单ID
 
 ### 品类
@@ -28,68 +26,75 @@ Coupon实体主要的功能如下：
 
 #### 优惠券类型
 
-#### 约束条件
+#### 使用细则
 
 ## DDL
 
-### category
-
-综上所述，外加一些原信息，category表设计如下：
+### coupon
 
 ```mysql
 -- auto-generated definition
-create table category
+create table coupon
 (
     id          int unsigned auto_increment
         primary key,
-    name        varchar(255)                                  not null comment '分类名称',
-    description varchar(255)                                  null comment '分类的描述信息',
-    is_root     tinyint unsigned default 0                    not null comment '是否是父节点',
-    parent_id   int unsigned                                  null comment '父节点ID',    
-    `index`     int unsigned                                  null comment '用于排序的字段',
-    online      int unsigned     default 1                    null comment '是否上线',    
+    title       varchar(255)                                  null,
+    description varchar(255)                                  null,
+    type        smallint                                      not null comment '1. 满减券 2.折扣券 3.无门槛券 4.满金额折扣券',
+    start_time  datetime                                      null comment '有效期上线',
+    end_time    datetime                                      null comment '有效期截止时间',
+    whole_store tinyint unsigned default 0                    null comment '标识是否为全场通用类型',
+    full_money  decimal(10, 2)                                null comment '使用优惠券时的条件：满足多少钱',
+    minus       decimal(10, 2)                                null comment '减免多少钱',
+    rate        decimal(10, 2)                                null comment '打多少折',
     create_time datetime(3)      default CURRENT_TIMESTAMP(3) null,
-    update_time datetime(3)      default CURRENT_TIMESTAMP(3) null on update CURRENT_TIMESTAMP(3)
+    update_time datetime(3)      default CURRENT_TIMESTAMP(3) null on update CURRENT_TIMESTAMP(3),
+    online      tinyint          default 1                    null comment '标识是否上线',
+    activity_id int unsigned                                  null comment '隶属于的品类'
 )
-    charset = utf8mb4;
+    comment 'remark /*描述该优惠券能够使用的类型，前端展示用*/' charset = utf8mb4;
+
+
 ```
 
-### grid_category
+### category_coupon
 
-
+多对多关系，第三张表没有实际业务意义。
 
 ```mysql
 -- auto-generated definition
-create table grid_category
-(
-    id               int unsigned auto_increment
-        primary key,
-    title            varchar(255)                             null comment '网格分类名称，前端展示字段',
-    img              varchar(255)                             null comment '对应的icon图片',
-    create_time      datetime(3) default CURRENT_TIMESTAMP(3) null,
-    update_time      datetime(3) default CURRENT_TIMESTAMP(3) null on update CURRENT_TIMESTAMP(3),
-    delete_time      datetime(3)                              null comment '不属于核心业务数据，因此可以硬删除',
-    category_id      int                                      null comment '对应的分类'
-)
-    charset = utf8mb4;
-
-	
-```
-
-### category_activity
-
-先把和活动的第三张表建立出来，防止后面忘记~
-
-```mysql
--- auto-generated definition
-create table activity_category
+create table coupon_category
 (
     id          int unsigned auto_increment
         primary key,
-    category_id int unsigned not null,
-    activity_id int          not null
+    category_id int unsigned     not null,
+    coupon_id   int(11) unsigned not null
 )
     charset = utf8mb4;
 
 
 ```
+
+### user_coupon
+
+对多多关系，第三张表具有实际业务意义。
+
+```mysql
+-- auto-generated definition
+create table user_coupon
+(
+    id          int unsigned auto_increment
+        primary key,
+    user_id     int unsigned                                  not null,
+    coupon_id   int unsigned                                  not null,
+    order_id    int unsigned                                  null comment '在优惠券核销时，需要填写对应的订单号',
+    status      tinyint unsigned default 0                    not null comment '1:未使用，2：已使用， 3：已过期',
+    create_time datetime(3)      default CURRENT_TIMESTAMP(3) null,    
+    update_time datetime(3)      default CURRENT_TIMESTAMP(3) null on update CURRENT_TIMESTAMP(3),
+    constraint uni_user_coupon
+        unique (user_id, coupon_id)
+)
+    charset = utf8mb4;
+
+```
+

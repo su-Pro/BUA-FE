@@ -29,75 +29,49 @@
 - 用户是否拥有该优惠券并且状态为未使用？
 - 在满足品类要求的情况下是否达到使用条件（满金额）？
 
+> 延迟思考，订单部分在做
+
 ### 数据表设计
 
 
 
-## RD
+### RD
 
 ### 数据层（entity、repo）
 
-使用ORM的好处就是在于方便的操作数据库，其关键在于entity描述了真实的数据库中的表和字段。
 
-之所以再拆分出一层repository，是为了将一些底层的数据库操作封装在repository中。这样能够在业务复杂时尽量保证entity的纯粹性，仅仅是描述数据库中的表，以及表关系。
 
 #### entity
 
-大可不必手写entity，可以借助数据库管理工具编写好表后进行**反向工程**生成数据库（我也不知道这样好不好...求指正）。
+#### repo
 
-这里只解释如下内容：
+提供两个方法：
 
-```typescript
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { classToPlain, Exclude } from 'class-transformer';
+`getStatusCoupon()` 获取指定状态的coupon
 
-@Entity("theme", { schema: "bua_real" })
-export class Theme {
-  //...
-  @Exclude({ toPlainOnly: true })
-  @Column("datetime", { name: "delete_time", nullable: true })
-  delete_time: Date | null;
+`collectCoupon( )` 用户领取优惠券
 
-  toJSON() {
-    return classToPlain(this);
-  }
-}
+`getStatusCoupon()` 主要用于查询用户所有状态的优惠券，需要关联三张表：Coupon -> user_coupon -> user，找到user所有的coupon数据。
 
-```
+根据不同状态进行筛选：
 
-由于创建、更新、删除时间通常不需要返回给前端，因此这里可以使用`class-transformer`提供的注解函数将其忽略。
+  未使用（可用）：判定为未使用需要满足三个条件：status为1 以及 order为空，同时当前时间在优惠券的范围内。
 
-> 个人理解和JPA中的jsonignore注解是一样用途
+  已使用：order不为空 status 2
 
-#### arepo
+  已过期：order 为 3 时间不在范围内。
 
-由于需要查询一组theme（可以使用ORM提供的语法糖进行查询），因此在数据层这里查询参数就要有所限制，例如需要是一个数组。
+`collectCoupon()`的逻辑拆解为如下几个步骤：
 
-> 但通常前端传递时使用字符串拼接查询更为方便合理，所以在后面处理接口时候需要pipe转化一下。mark it
-
-这里可以使用ORM提供的queryBuilder建立查询语句，ORM代码如下。
-
-```typescript
-async findByNames(names: ThemeByNamesDTO): Promise<Theme []> {
-    let themeList:Theme[];
-    try {
-       const query =  this.createQueryBuilder('theme')
-        .where('theme.name IN (:...names)', { names });
-        themeList = await query.getMany();
-    } catch (e) {
-    throw new _httpException(new ErrorThemeByNamesDB())
-    }
-    return themeList;
-}
-```
-
-- [ ] mySQL如何处理数组参数的WHERE查询？
+1. 判断优惠券是否为有效的
+2. 判断用户是否存在重复领取
+3. 创建user_coupon 存储
 
 ### 接口约定
 
-#### 获取一组theme
+#### 获取指定状态的优惠券
 
-`v1/theme/by/names`
+`v1/coupon/by/status/:status`
 
 ```json
 req: query参数names=x,y,z
@@ -106,14 +80,12 @@ res:
 
 ```
 
-#### 获取某个theme并携带spu_list
+#### 领取优惠券
 
-```json
-req:
+`v1/coupon/collection/:couponid`
 
-res:
+不能在http中传递用户的身份，否则会泄露用户的信息。
 
-```
 
 ### service
 
@@ -141,11 +113,3 @@ res:
 
 ## extra
 
-#### 反向工程：逆向生成entity
-
-#### Class-validators ignore
-
-[How to exclude entity field from returned by controller JSON. NestJS + Typeorm](https://stackoverflow.com/questions/50360101/how-to-exclude-entity-field-from-returned-by-controller-json-nestjs-typeorm)
-
-
-#### 全局异常层封装
