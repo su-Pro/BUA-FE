@@ -10,8 +10,10 @@ import { CouponModule } from './feature/coupon/coupon.module';
 import { TokenModule } from './feature/token/token.module';
 import { CategoryModule } from './feature/category/category.module';
 
+
 @Module({
   imports: [
+    //TODO: 将数据库配置项移动至env中
     TypeOrmCoreModule.forRoot(),
     ThemeModule,
     SkuModule,

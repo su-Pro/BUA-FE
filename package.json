@@ -44,7 +44,8 @@
     "rxjs": "^6.5.4",
     "stacktrace-js": "^2.0.2",
     "swagger-ui-express": "^4.1.4",
-    "typeorm": "^0.2.29"
+    "typeorm": "^0.2.29",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
