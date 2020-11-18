@@ -12,6 +12,19 @@ export class ErrorThemeByNamesParams implements CodeAndMsg{
   MESSAGE = "查询参数有误，请查看"
 }
 export class ErrorThemeByNamesDB implements CodeAndMsg{
-  CODE = 10001;
+  CODE = 10002;
   MESSAGE = "数据库查询出错，稍后再试！"
+}
+export class ErrorSkuByIdParams implements CodeAndMsg{
+  CODE = 20001;
+  MESSAGE = "查询id参数有误，请查看"
+}
+export class ErrorSkuPaginationParams implements CodeAndMsg{
+  CODE = 20002;
+  MESSAGE = "分页参数有误，请查看"
+}
+
+export class ErrorLogin implements CodeAndMsg{
+  CODE = 30001;
+  MESSAGE = "获取openID失败"
 }

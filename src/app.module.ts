@@ -5,12 +5,19 @@ import { LoggerMiddleware } from './core/middleware/logger.middleware';
 import { Connection } from 'typeorm';
 import { TypeOrmCoreModule } from '@nestjs/typeorm/dist/typeorm-core.module';
 import { ThemeModule } from './feature/theme/theme.module';
-
+import { SkuModule } from './feature/sku/sku.module';
+import { CouponModule } from './feature/coupon/coupon.module';
+import { TokenModule } from './feature/token/token.module';
+import { CategoryModule } from './feature/category/category.module';
 
 @Module({
   imports: [
     TypeOrmCoreModule.forRoot(),
     ThemeModule,
+    SkuModule,
+    CouponModule,
+    TokenModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
