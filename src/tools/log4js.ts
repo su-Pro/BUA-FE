@@ -5,7 +5,6 @@ import * as Moment from 'moment'; // 处理时间的工具
 import * as StackTrace from 'stacktrace-js';
 import Chalk from 'chalk';
 import config from '../config/log4js';
-
 // 日志级别
 export enum LoggerLevel {
   ALL = 'ALL',

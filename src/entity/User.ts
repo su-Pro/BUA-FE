@@ -1,4 +1,5 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Coupon } from './Coupon';
 
 @Index("uni_openid", ["openid"], { unique: true })
 @Entity("user", { schema: "bua_real" })
@@ -45,4 +46,10 @@ export class User {
     default: () => "'CURRENT_TIMESTAMP(3)'",
   })
   update_time: Date | null;
+
+  @ManyToMany(
+    type => Coupon,
+    coupon => coupon.id,
+  )
+  coupons: Coupon[];
 }
