@@ -16,4 +16,10 @@ export class SkuRepo extends Repository<Sku>{
       .take(paginationDTO.limit)
     return await query.getMany();
   }
+  async findSkuByIdList (skuIdList:any[]):Promise<Sku[]> {
+    const query = this.createQueryBuilder('sku')
+      .where("sku.id IN (:skuIdList)",{skuIdList})
+      .andWhere("sku.online = :online",{online: 1})
+    return await query.getMany()
+  }
 }

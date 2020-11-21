@@ -9,6 +9,7 @@ import { SkuModule } from './feature/sku/sku.module';
 import { CouponModule } from './feature/coupon/coupon.module';
 import { TokenModule } from './feature/token/token.module';
 import { CategoryModule } from './feature/category/category.module';
+import { OrderModule } from './feature/order/order.module';
 
 
 @Module({
@@ -20,6 +21,7 @@ import { CategoryModule } from './feature/category/category.module';
     CouponModule,
     TokenModule,
     CategoryModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

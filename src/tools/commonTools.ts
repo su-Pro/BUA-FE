@@ -8,4 +8,13 @@ export class CommonTools {
     }
     return false;
   }
+
+  /**
+   * 比较val1是否小于val2
+   * @param val1
+   * @param val2
+   */
+  public static compareValue(val1:number,val2:number):boolean {
+    return val1 < val2;
+  }
 }

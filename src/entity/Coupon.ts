@@ -1,5 +1,6 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from './User';
+import { Category } from './Category';
 
 @Entity("coupon", { schema: "bua_real" })
 export class Coupon {
@@ -107,4 +108,15 @@ export class Coupon {
     inverseJoinColumns: [{ name: 'user_id' }],
   })
   user: User[];
+  @ManyToMany(
+    type => Category,
+    category => category.id,
+  )
+  @JoinTable({
+    name: 'coupon_category',
+    joinColumns: [{ name: 'coupon_id' }],
+    inverseJoinColumns: [{ name: 'category_id' }],
+  })
+  categoryList: Category[];
+
 }

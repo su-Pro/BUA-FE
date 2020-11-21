@@ -85,4 +85,11 @@ export class Sku {
     default: () => "'0'",
   })
   stock: number;
+
+  /**
+   * 返回真实价格，需要处理带两种价格的情况
+   */
+  getRealPrice() {
+    return this.discount_price? (+this.discount_price) : (+this.price)
+  }
 }

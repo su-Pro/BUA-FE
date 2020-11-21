@@ -31,4 +31,9 @@ export class CouponRepo extends Repository<Coupon> {
     }
     return await query.getMany();
   }
+  async findById (couponId:number):Promise<Coupon> {
+    const query = this.createQueryBuilder("coupon")
+      .where("coupon.id = :couponId",{couponId});
+    return await query.getOne();
+  }
 }
