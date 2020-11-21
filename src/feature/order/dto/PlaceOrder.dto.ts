@@ -13,7 +13,7 @@ export class PlaceOrderDTO {
   @Max(999999.99)
   @IsNotEmpty()
   finalTotalPrice;
-  couponId;
+  couponId : number;
   @IsNotEmpty()
   skuInfoList:SkuInfoDTO [];
   @IsNotEmpty()

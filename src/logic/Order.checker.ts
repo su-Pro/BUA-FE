@@ -26,12 +26,12 @@ export class SkuOrderBO {
 }
 
 export class OrderChecker {
-  constructor(private placeOrderDTO: PlaceOrderDTO, private serverSkuList: Sku[], private couponChecker: CouponChecker) {
+  constructor(private placeOrderDTO: PlaceOrderDTO, public serverSkuList: Sku[], private couponChecker: CouponChecker) {
   }
 
   async isChecked() {
     //  根据前端和后端的sku数量判断即可
-    this.skuNotOnSale(this.placeOrderDTO.skuInfoList, this.serverSkuList);
+    OrderChecker.skuNotOnSale(this.placeOrderDTO.skuInfoList, this.serverSkuList);
     //  计算sku的总价
     let serverTotalPrice: number;
     let skuOrderBOlist: SkuOrderBO[];
@@ -44,13 +44,13 @@ export class OrderChecker {
        * 2. 某个sku的购买量是否超出当前库存
        * 3. 某个sku的购买量是否超出最大限制
        */
-      this.containsSoldOutSku(sku);
-      this.beyondSkuStock(sku, skuInfoDTO);
-      this.beyondMaxSkuLimit(skuInfoDTO);
-      serverTotalPrice += this.singleSkuTotalOrderPrice(sku, skuInfoDTO);
+      OrderChecker.containsSoldOutSku(sku);
+      OrderChecker.beyondSkuStock(sku, skuInfoDTO);
+      OrderChecker.beyondMaxSkuLimit(skuInfoDTO);
+      serverTotalPrice += OrderChecker.singleSkuTotalOrderPrice(sku, skuInfoDTO);
       skuOrderBOlist.push(new SkuOrderBO(sku, skuInfoDTO));
     }
-    this.toTalPriceIsOk(serverTotalPrice, this.placeOrderDTO.totalPrice);
+    OrderChecker.toTalPriceIsOk(serverTotalPrice, this.placeOrderDTO.totalPrice);
     if (this.couponChecker) {
       this.couponChecker.effectiveDate();
       this.couponChecker.conditionsUse(skuOrderBOlist, serverTotalPrice);
@@ -59,30 +59,47 @@ export class OrderChecker {
   }
 
   /**
+   * 累加前端所有商品组数
+   */
+  getTotalCount() {
+    return this.placeOrderDTO.skuInfoList
+      .map(item => item.count)
+      .reduce((prev, curr) => prev + curr, 0);
+  }
+
+  getLeaderImg() {
+    return this.serverSkuList[0].img;
+  }
+
+  getLeaderTitle() {
+    return this.serverSkuList[0].title;
+  }
+
+  /**
    * 判断是否有下架商品
    * @param skuInfoList
    * @param serverSkuList 查询时已经排除下架的商品
    * @private
    */
-  private skuNotOnSale(skuInfoList: SkuInfoDTO[], serverSkuList: Sku[]) {
+  private static skuNotOnSale(skuInfoList: SkuInfoDTO[], serverSkuList: Sku[]) {
     if (skuInfoList.length !== serverSkuList.length) {
       //  throw
     }
   }
 
-  private containsSoldOutSku(sku: Sku) {
+  private static containsSoldOutSku(sku: Sku) {
     if (sku.stock === 0) {
       // throw
     }
   }
 
-  private beyondSkuStock(sku: Sku, skuInfoDTO: SkuInfoDTO) {
+  private static beyondSkuStock(sku: Sku, skuInfoDTO: SkuInfoDTO) {
     if (sku.stock < skuInfoDTO.count) {
       //  throw
     }
   }
 
-  private beyondMaxSkuLimit(skuInfoDTO: SkuInfoDTO) {
+  private static beyondMaxSkuLimit(skuInfoDTO: SkuInfoDTO) {
     if (skuInfoDTO.count > MAXIMUM_BUY_SKU) {
       // throw
     }
@@ -94,7 +111,7 @@ export class OrderChecker {
    * @param skuInfoDTO
    * @private
    */
-  private singleSkuTotalOrderPrice(sku: Sku, skuInfoDTO: SkuInfoDTO) {
+  private static singleSkuTotalOrderPrice(sku: Sku, skuInfoDTO: SkuInfoDTO) {
     if (skuInfoDTO.count <= 0) {
       //  throw
     }
@@ -107,10 +124,11 @@ export class OrderChecker {
    * @param totalPrice
    * @private
    */
-  private toTalPriceIsOk(serverTotalPrice: number, totalPrice: number) {
+  private static toTalPriceIsOk(serverTotalPrice: number, totalPrice: number) {
 
     if (serverTotalPrice === totalPrice) {
       // throw
     }
   }
+
 }
