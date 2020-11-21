@@ -1,5 +1,6 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Coupon } from './Coupon';
+import { Sku } from './Sku';
 
 @Entity("category", { schema: "bua_real" })
 export class Category {
@@ -63,6 +64,11 @@ export class Category {
     default: () => "'CURRENT_TIMESTAMP(3)'",
   })
   update_time: Date | null;
+  @OneToMany(
+    type => Sku,
+    sku => sku.category_id
+  )
+  skuList: Sku[];
   @ManyToMany(
     type => Coupon,
     coupon => coupon.id,

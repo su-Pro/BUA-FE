@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
+import { Category } from './Category';
 
 @Entity("sku", { schema: "bua_real" })
 export class Sku {
@@ -61,13 +62,14 @@ export class Sku {
     default: () => "'CURRENT_TIMESTAMP(3)'",
   })
   update_time: Date | null;
-
   @Column("int", {
     name: "category_id",
     nullable: true,
     comment: "隶属的分类",
     unsigned: true,
   })
+  @ManyToOne(type => Category)
+  @JoinColumn({ name: "category_id" })
   category_id: number | null;
 
   @Column("tinyint", {

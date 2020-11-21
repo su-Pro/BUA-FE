@@ -3,7 +3,6 @@ import { PlaceOrderDTO } from './dto/PlaceOrder.dto';
 import { CouponRepo } from '../coupon/coupon.repo';
 import { SkuRepo } from '../sku/sku.repo';
 import { UserCouponRepo } from '../coupon/userCoupon.repo';
-import { parseForESLint } from '@typescript-eslint/parser';
 import { CouponStatus } from '../../enumeration/Coupon.status';
 import { Coupon } from '../../entity/Coupon';
 import { UserCoupon } from '../../entity/UserCoupon';
