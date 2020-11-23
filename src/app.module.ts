@@ -10,18 +10,22 @@ import { CouponModule } from './feature/coupon/coupon.module';
 import { TokenModule } from './feature/token/token.module';
 import { CategoryModule } from './feature/category/category.module';
 import { OrderModule } from './feature/order/order.module';
+import { RedisModule } from './shared/redis/redis.module';
+import { ActivityModule } from './feature/activity/activity.module';
 
 
 @Module({
   imports: [
     //TODO: 将数据库配置项移动至env中
     TypeOrmCoreModule.forRoot(),
+    RedisModule.forRootAsync(),
     ThemeModule,
     SkuModule,
     CouponModule,
     TokenModule,
     CategoryModule,
     OrderModule,
+    ActivityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

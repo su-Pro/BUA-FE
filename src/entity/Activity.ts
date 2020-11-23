@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Coupon } from './Coupon';
 
 @Entity("activity", { schema: "bua_real" })
 export class Activity {
@@ -52,4 +53,10 @@ export class Activity {
     default: () => "'1'",
   })
   online: number | null;
+
+  @OneToMany(
+    type => Coupon,
+    coupon => coupon.activity_id,
+  )
+  couponList: Coupon[];
 }

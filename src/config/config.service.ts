@@ -1,4 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import * as IORedis from 'ioredis';
 require('dotenv').config();
 
 /**
@@ -47,28 +48,15 @@ class ConfigService {
 
   public getTypeOrmConfig(): TypeOrmModuleOptions {
     return {
-      type: 'postgres',
-
-      host: this.getValue('POSTGRES_HOST'),
-      port: parseInt(this.getValue('POSTGRES_PORT')),
-      username: this.getValue('POSTGRES_USER'),
-      password: this.getValue('POSTGRES_PASSWORD'),
-      database: this.getValue('POSTGRES_DATABASE'),
-
-      entities: ['**/*.entity{.ts,.js}'],
-
-      migrationsTableName: 'migration',
-
-      migrations: ['src/migration/*.ts'],
-
-      cli: {
-        migrationsDir: 'src/migration',
-      },
-
-      ssl: this.isProduction(),
     };
   }
-
+  public getRedisConfig():IORedis.RedisOptions {
+    return {
+      host: this.getValue("REDIS_HOST"),
+      port: parseInt(this.getValue('REDIS_PORT')),
+      db:parseInt(this.getValue("REDIS_DB")),
+    };
+  }
 }
 
 const configService = new ConfigService(process.env)
@@ -76,6 +64,9 @@ const configService = new ConfigService(process.env)
     'WX_AUTH_URL',
     'WX_APPID',
     'WX_APPSECRET',
+    "REDIS_HOST",
+    "REDIS_PORT",
+    "REDIS_DB"
   ]);
 
 export { configService };

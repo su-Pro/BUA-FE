@@ -6,10 +6,11 @@ import { UserCoupon } from '../../entity/UserCoupon';
 import { UserCouponRepo } from '../coupon/userCoupon.repo';
 import { CouponRepo } from '../coupon/coupon.repo';
 import { SkuRepo } from '../sku/sku.repo';
+import { OrderRepo } from './Order.repo';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserCouponRepo,CouponRepo,SkuRepo])
+    TypeOrmModule.forFeature([UserCouponRepo,CouponRepo,SkuRepo,OrderRepo])
   ],
   controllers: [OrderController],
   providers: [OrderService]

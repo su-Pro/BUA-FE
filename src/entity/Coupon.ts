@@ -1,6 +1,16 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { User } from './User';
 import { Category } from './Category';
+import { Activity } from './Activity';
 
 @Entity("coupon", { schema: "bua_real" })
 export class Coupon {
@@ -97,7 +107,21 @@ export class Coupon {
     comment: "隶属于的品类",
     unsigned: true,
   })
+  @ManyToOne(
+    type => Activity,
+    activity => activity.couponList,
+  )
+  @JoinColumn({
+    name: 'activity_id',
+  })
   activity_id: number | null;
+
+  @OneToMany(
+    type => Coupon,
+    coupon => coupon.activity_id,
+  )
+  couponList: Coupon[];
+
   @ManyToMany(
     type => User,
     user => user.id,

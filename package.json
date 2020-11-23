@@ -23,6 +23,7 @@
     "db:generator": "typeorm-model-generator -h 175.24.132.203 -d bua_real -p 3306 -u root -x Spy960820_ -e mysql -o src/entity/test --noConfig true --cp snake"
   },
   "dependencies": {
+    "@golevelup/nestjs-rabbitmq": "^1.15.2",
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/jwt": "^7.2.0",
@@ -30,9 +31,14 @@
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/swagger": "^4.7.3",
     "@nestjs/typeorm": "^7.1.4",
+    "@types/amqplib": "^0.5.16",
+    "@types/ioredis": "^4.17.8",
+    "amqplib": "^0.6.0",
     "axios": "^0.21.0",
     "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
+    "dotenv": "^8.2.0",
+    "ioredis": "^4.19.2",
     "log4js": "^6.3.0",
     "moment": "^2.29.1",
     "mysql": "^2.18.1",
@@ -44,8 +50,7 @@
     "rxjs": "^6.5.4",
     "stacktrace-js": "^2.0.2",
     "swagger-ui-express": "^4.1.4",
-    "typeorm": "^0.2.29",
-    "dotenv": "^8.2.0"
+    "typeorm": "^0.2.29"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
