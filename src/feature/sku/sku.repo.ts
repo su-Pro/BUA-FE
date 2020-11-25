@@ -12,11 +12,11 @@ export class SkuRepo extends Repository<Sku> {
     return await query.getOne();
   }
 
-  async getPaginationSKU(paginationDTO: PaginationDTO): Promise<Sku []> {
+  async getPaginationSKU(paginationDTO: PaginationDTO): Promise<[Sku[], number]> {
     const query = this.createQueryBuilder('sku')
       .skip(paginationDTO.start)
       .take(paginationDTO.limit);
-    return await query.getMany();
+    return await query.getManyAndCount();
   }
 
   async findSkuByIdList(skuIdList: any[]): Promise<Sku[]> {

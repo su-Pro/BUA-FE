@@ -16,7 +16,8 @@ export class SkuController {
     return this.skuService.getDetailSKU(skuId)
   }
   @Get('lists')
-  async getPaginationSKU (@Query(SkuPaginationPipe) paginationDTO:PaginationDTO ): Promise<Sku []> {
+  //TODO: 分类借口不标准
+  async getPaginationSKU (@Query(SkuPaginationPipe) paginationDTO:PaginationDTO ): Promise<[Sku[], number]> {
     return this.skuService.getPaginationSKU(paginationDTO);
   }
 }

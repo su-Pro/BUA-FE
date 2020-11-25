@@ -15,7 +15,7 @@ export class SkuService {
   async getDetailSKU (skuId: number): Promise<Sku> {
     return this.skuRepo.getDetailSKU(skuId);
   }
-  async getPaginationSKU (paginationDTO: PaginationDTO): Promise<Sku []> {
+  async getPaginationSKU (paginationDTO: PaginationDTO): Promise<[Sku[], number]> {
     return this.skuRepo.getPaginationSKU(paginationDTO);
   }
 }

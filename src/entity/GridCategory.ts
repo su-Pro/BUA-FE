@@ -44,4 +44,6 @@ export class GridCategory {
 
   @Column("int", { name: "category_id", nullable: true, comment: "对应的分类" })
   category_id: number | null;
+  @Column("int", { name: "category_idx" })
+  category_idx: number | null;
 }
