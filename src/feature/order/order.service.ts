@@ -67,7 +67,7 @@ export class OrderService {
   }
 
   async placeOrder(uid: number, placeOrderDTO: PlaceOrderDTO, orderChecker: OrderChecker, manager: EntityManager): Promise<number> {
-    const orderNo = new Date().toDateString();
+    const orderNo = new Date().getTime().toString();
     const order = new Order();
     order.order_no = orderNo;
     order.status = OrderStatus.UNPAID;
@@ -79,8 +79,7 @@ export class OrderService {
     order.snap_title = orderChecker.getLeaderTitle();
     order.snap_address = placeOrderDTO.address;
     order.snap_items = orderChecker.serverSkuList;
-    const saveRes = await manager.getCustomRepository(OrderRepo).save(order);
-    console.log(saveRes);
+    await manager.getCustomRepository(OrderRepo).save(order);
     await OrderService.reduceStock(orderChecker, manager,placeOrderDTO);
     if (placeOrderDTO.couponId) {
       await OrderService.reduceCoupon(placeOrderDTO.couponId, order.id, uid, manager);

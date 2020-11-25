@@ -34,7 +34,7 @@ export class OrderChecker {
     OrderChecker.skuNotOnSale(this.placeOrderDTO.skuInfoList, this.serverSkuList);
     //  计算sku的总价
     let serverTotalPrice: number;
-    let skuOrderBOlist: SkuOrderBO[];
+    const skuOrderBOlist: SkuOrderBO[] = [];
     for (let i = 0; i < this.serverSkuList.length; i++) {
       const sku = this.serverSkuList[i];
       const skuInfoDTO: SkuInfoDTO = this.placeOrderDTO.skuInfoList[i];

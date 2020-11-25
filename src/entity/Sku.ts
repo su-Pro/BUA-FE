@@ -92,6 +92,8 @@ export class Sku {
    * 返回真实价格，需要处理带两种价格的情况
    */
   getRealPrice() {
+    console.log(+this.discount_price,+this.price);
+    console.log(Number.parseFloat(this.discount_price),+Number.parseFloat(this.price));
     return this.discount_price? (+this.discount_price) : (+this.price)
   }
 }

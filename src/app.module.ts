@@ -18,7 +18,6 @@ import { ActivityModule } from './feature/activity/activity.module';
   imports: [
     //TODO: 将数据库配置项移动至env中
     TypeOrmCoreModule.forRoot(),
-    RedisModule.forRootAsync(),
     ThemeModule,
     SkuModule,
     CouponModule,

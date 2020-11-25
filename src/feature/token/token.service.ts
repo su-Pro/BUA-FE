@@ -35,7 +35,6 @@ export class TokenService {
    * @param code 小程序用户登录的code码
    */
   async code2Session(code: string): Promise<string> {
-    debugger;
     const url = util.format(
       configService.getWXAuthURL(),
       configService.getWXappId(),

@@ -3,7 +3,6 @@ import { StatusDTO } from './dto/Status.dto';
 import { Coupon } from '../../entity/Coupon';
 import { CouponRepo } from './coupon.repo';
 import { UserCouponRepo } from './userCoupon.repo';
-import { UserRepo } from '../token/user.repo';
 import { CollectionCouponDTO } from './dto/CollectionCoupon.dto';
 import { _httpException } from '../../core/exception/http.excetion';
 import {
