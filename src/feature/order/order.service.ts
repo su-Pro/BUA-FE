@@ -12,6 +12,7 @@ import { OrderRepo } from './Order.repo';
 import { Order } from '../../entity/Order';
 import { OrderStatus } from '../../enumeration/Order.status';
 import { EntityManager } from 'typeorm';
+import { GetOrderStatusDTO } from './dto/GetOrderStatus.dto';
 
 @Injectable()
 export class OrderService {
@@ -22,7 +23,9 @@ export class OrderService {
     private orderRepo: OrderRepo,
   ) {
   }
-
+  async getOrderByStatus (getOrderStatusDTO:GetOrderStatusDTO):Promise<Order []> {
+    return await this.orderRepo.find();
+  }
   /**
    *TODO:
    * 1. 流水号生成npm包 -> 没那么简单！！！ -> 先给一个时间戳!!!
