@@ -1,0 +1,63 @@
+<!--导航__分类-->
+
+<wxs src="../../wxs/price.wxs" module="p"></wxs>
+<mp-vtabs
+        vtabs="{{vtabs}}"
+        activeTab="{{activeTab}}"
+        bindtabclick="onTabCLick"
+        bindchange="onChange"
+        tabBarActiveTextColor="{{mainColor}}"
+        tabBarLineColor="{{mainColor}}"
+        class="test"
+>
+    <block wx:for="{{vtabs}}" wx:key="id" >
+        <mp-vtabs-content tabIndex="{{index}}">
+            <view class="content-title">
+            <text >{{item.name}}</text>
+            </view>
+            <view wx:for="{{item.skuList}}" wx:key="id" class="spu-box" >
+                <s-spu-item  sku-item="{{item}}" bind:showdetail="onShowDetail">
+                 </s-spu-item>
+                </view>
+        </mp-vtabs-content>
+    </block>
+</mp-vtabs>
+<l-popup show="{{showPopup}}">{{skuItem.title}}
+    <view class="sku-box">
+        <view class="box-top">
+            <view class="sku-title">{{skuItem.title}}</view>
+            <view class="sku-img"><image class="imag" src="{{skuItem.img}}"/></view>
+            <view class="sku-introduce">{{skuItem.sub_title}}</view>
+        </view>
+        <view class="box-bottom">
+            <view class="price-container">
+                <view class="spu-price">
+                    <l-price value="{{p.shortagePrice(skuItem.price, skuItem.discount_price).mainprice}}"
+                             color="#157658"
+                             unit-size="20"
+                             autofix
+                             count-size="26"
+                             l-unit-class="l-price-unit">
+                    </l-price>
+                    <l-price
+                            wx:if="{{p.shortagePrice(skuItem.price, skuItem.discount_price).discountPrice}}"
+                            value="{{p.shortagePrice(skuItem.price, skuItem.discount_price).discountPrice}}"
+                            l-class="discount-price"
+                            size="22"
+                            color="#999"
+                            bold="400"
+                            deleted>
+                    </l-price></view>
+                <l-tag
+                       size="mini"
+                       bg-color="#c93756"
+                       shape="circle"
+                       type="reading"
+                       height="35"
+                catch:tap="onAddToCart">
+                    + 加入购物车
+                </l-tag>
+            </view>
+        </view>
+    </view>
+</l-popup>

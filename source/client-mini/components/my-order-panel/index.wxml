@@ -1,0 +1,29 @@
+<view class="inner-container">
+    <view class="title-row">
+        <text>我的订单</text>
+    </view>
+    <view class="icon-row">
+        <view data-key="1" bind:tap="onGotoMyOrder" class="icon-item">
+            <l-badge show="{{unpaidCount!==0}}" shape="circle" max-count="99" value="{{unpaidCount}}">
+                <l-icon name="unpaid" l-class="sleeve"></l-icon>
+            </l-badge>
+            <text>待支付</text>
+        </view>
+        <view data-key="2" bind:tap="onGotoMyOrder" class="icon-item">
+            <l-badge show="{{paidCount!==0}}" shape="circle" max-count="99" value="{{paidCount}}">
+                <l-icon size="48" name="paid" l-class="sleeve"></l-icon>
+            </l-badge>
+            <text>待发货</text>
+        </view>
+        <view data-key="3" bind:tap="onGotoMyOrder" class="icon-item">
+            <l-badge show="{{deliveredCount!==0}}" shape="circle" max-count="99" value="{{deliveredCount}}">
+                <l-icon name="delivered" l-class="sleeve"></l-icon>
+            </l-badge>
+            <text>待收货</text>
+        </view>
+        <view data-key="4" bind:tap="onGotoMyOrder" class="icon-item">
+            <l-icon name="over" l-class="sleeve"></l-icon>
+            <text>已完成</text>
+        </view>
+    </view>
+</view>

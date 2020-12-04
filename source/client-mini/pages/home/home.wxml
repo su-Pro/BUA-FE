@@ -1,0 +1,31 @@
+<!--导航__首页-->
+<l-loadmore show
+            end-text="- 我是有底线哒~ -"
+            type="{{loadingType}}">
+    <view slot="content" class="container">
+        <!--    优惠券-->
+        <image class="activity" data-index="0"bind:tap="onGoToCategory"  src="{{themeA.entrance_img}}"></image>
+
+        <!--    分类宫格-->
+        <s-category-grid grid="{{grid}}" bind:gotocategory="onGoToCategory"></s-category-grid>
+
+        <!--    轮播图 -->
+        <swiper class="swiper"
+                indicator-dots
+                indicator-active-color="#157658"
+                autoplay
+                circular>
+            <block wx:for="{{themeA.name.length}}" wx:key="index">
+                <swiper-item bind:tap="onGoToCoupons">
+                    <image class="swiper" src="{{themeA.entrance_img}}"></image>
+                </swiper-item>
+            </block>
+        </swiper>
+
+        <!-- 瀑布流 -->
+                <view class="spu-bottom">
+                    <image class="title-spu-bottom" src="/imgs/home/title@interest.png"></image>
+                    <l-water-flow generic:l-water-flow-item="s-spu-preview"></l-water-flow>
+                </view>
+    </view>
+</l-loadmore>

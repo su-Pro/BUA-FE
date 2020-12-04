@@ -1,0 +1,35 @@
+<!--导航__购物车-->
+        <!-- ---------------购物车为空---------- -->
+<view class="empty-container" wx:if="{{isEmpty}}">{{isEmpty}}
+    <s-empty show-btn show text="购物车空空的，去逛逛吧" btn-text="去逛逛"></s-empty>
+</view>
+
+
+        <!-- ---------------购物车不为空---------- -->
+<view wx:if="{{!isEmpty}}" class="container">
+    <block wx:key="index" wx:for="{{cartItems}}">
+        <s-cart-item bind:overflow="onOverflow" bind:itemdelete="onDeleteItem" bind:countfloat="onCountFloat" bind:itemcheck="onSingleCheck" cart-item="{{item}}"></s-cart-item>
+    </block>
+</view>
+
+<view wx:if="{{!isEmpty}}" class="total-container">
+    <view class="data-container">
+        <view class="checkbox-container">
+            <s-checkbox bind:check="onCheckAll" checked="{{allChecked}}"></s-checkbox>
+            <text>全选</text>
+        </view>
+        <view class="price-container">
+            <text>合计</text>
+            <l-price value="{{totalPrice}}"
+                     color="#157658"
+                     count-size="32"
+                     unit-size="32">
+            </l-price>
+        </view>
+    </view>
+    <view bind:tap="onSettle" class="settlement-btn {{totalSkuCount===0?'disabled':''}}">
+        <text>结算 ( {{totalSkuCount}} )</text>
+    </view>
+</view>
+
+<view style="height: 100rpx"></view>

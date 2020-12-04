@@ -1,0 +1,64 @@
+<wxs src="../../wxs/stock.wxs" module="s"></wxs>
+<wxs src="../../wxs/price.wxs" module="p"></wxs>
+
+<l-slide-view wx:if="{{cartItem}}" height="220" width="750" slide-width="200">
+    <view slot="left" class="container">
+        <view class="checkbox">
+            <s-checkbox bind:check="checkedItem" checked="{{cartItem.checked}}"></s-checkbox>
+        </view>
+
+        <view class="sku-container">
+            <view class="image-container">
+                <view wx:if="{{!online}}" class="image-sold-out">
+                    <text>下 架</text>
+                </view>
+                <view wx:elif="{{soldOut}}" class="image-sold-out">
+                    <text>售 罄</text>
+                </view>
+                <view wx:elif="{{s.shortage(cartItem.sku.stock)}}" class="image-stock-pinch">
+                    <text>仅剩{{cartItem.sku.stock}}件</text>
+                </view>
+                 <image mode="aspectFit" class="left" src="{{cartItem.sku.img}}"></image>
+                </view>
+
+            <view class="right  {{soldOut?'disabled':''}}">
+                <view class="description-container">
+                    <view class="title-container">
+                        <l-tag
+                                wx:if="{{discount}}"
+                                l-class="discount-tag"
+                                size="mini"
+                                bg-color="#c93756"
+                                shape="circle"
+                                type="reading"
+                                height="24">
+                            打折
+                        </l-tag>
+                        <text class="title">{{cartItem.sku.title}}</text>
+                    </view>
+
+                </view>
+
+                <view class="price-container">
+                    <l-price
+                            color="#157658"
+                            count-size="28"
+                            value="{{p.shortagePrice(cartItem.sku.price, cartItem.sku.discount_price).mainprice}}">
+                    </l-price>
+                    <s-counter bind:linout="onOutNumber"
+                               max="{{stock}}"
+                               bind:lintap="onSelectCount"
+                               count="{{skuCount}}">
+                    </s-counter>
+                </view>
+            </view>
+
+            <view wx:if="{{soldOut || !online}}" class="sold-out">
+            </view>
+        </view>
+    </view>
+
+    <view bind:tap="onDelete" slot="right" class="slide">
+        <text>删除</text>
+    </view>
+</l-slide-view>

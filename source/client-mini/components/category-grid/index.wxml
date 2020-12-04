@@ -1,0 +1,13 @@
+<!--components/category-grid/index.wxml-->
+<view class="container">
+    <l-grid l-class="inner-container">
+        <block wx:for="{{grid}}" wx:key="index"  >
+            <l-grid-item data-index="{{index}}" bind:tap="onGoToCategory"  key="{{index}}" slot="{{index}}">
+                <view class="grid-item">
+                    <image class="img" src="{{item.img}}"></image>
+                    <text class="text">{{item.title}}</text>
+                </view>
+            </l-grid-item>
+        </block>
+    </l-grid>
+</view>

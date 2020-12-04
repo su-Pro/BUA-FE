@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "s-category-grid": "/components/category-grid/index",
+    "l-water-flow":"/miniprogram_npm/lin-ui/water-flow/index"
+  }
+}

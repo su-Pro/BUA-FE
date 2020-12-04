@@ -1,0 +1,25 @@
+<!--导航__我的-->
+
+<view class="container">
+    <s-my-banner coupon-count="{{couponCount}}"></s-my-banner>
+
+    <view class="main-container">
+        <s-my-order-panel></s-my-order-panel>
+
+        <view class="list">
+            <l-list bind:lintap="onGotoMyOrder" icon="order1" l-icon-class="sleeve-order" l-class-content="list-item" title="全部订单"></l-list>
+            <l-list bind:lintap="onGotoMyCoupon" icon="coupon" l-icon-class="sleeve-coupon" l-class-content="list-item" title="优惠券"></l-list>
+            <l-list bind:lintap="onMgrAddress" icon="address2" l-icon-class="sleeve-address" l-class-content="list-item" title="收货地址"></l-list>
+        </view>
+
+    </view>
+</view>
+<l-dialog content-color="#333333"
+          confirm-color="#157658"
+          title-color="#157658"
+          bind:linconfirm="onDialogConfirm"
+          bind:lincancel="onDialogancel"
+          show="{{showDialog}}"
+          content="请先授权《--》获取您的收货地址"
+          title="授权">
+</l-dialog>

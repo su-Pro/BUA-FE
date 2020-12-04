@@ -1,0 +1,15 @@
+<view class="container l-class">
+    <image mode="aspectFit" src="{{orderItem.img}}" class="left"></image>
+    <view class="middle">
+        <text class="title hidden-text ">{{orderItem.title}}</text>
+            <view  class="unit-price">
+                <text>单价：{{orderItem.singleFinalPrice}}</text>
+            </view>
+    </view>
+    <view class="right">
+        <l-price value="{{orderItem.finalPrice || orderItem.final_price}}"
+                 color="#333333">
+        </l-price>
+        <text>x {{orderItem.count}}</text>
+    </view>
+</view>

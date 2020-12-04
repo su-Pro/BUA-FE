@@ -1,0 +1,20 @@
+// 真实价格与划线价格
+function shortagePrice(price, discountPrice) {
+  if(!discountPrice){
+    return {
+      mainprice:price,
+      discountPrice:null
+    }
+  }
+  else{
+    return {
+      mainprice:discountPrice,
+      discountPrice:price
+    }
+  }
+}
+
+
+module.exports = {
+  shortagePrice:shortagePrice
+}

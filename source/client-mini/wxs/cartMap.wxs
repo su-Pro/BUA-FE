@@ -1,0 +1,11 @@
+
+
+function cartCount(map,item) {
+  console.log(map.get(item))
+  return map.get(item)
+}
+
+
+module.exports = {
+  cartCount:cartCount
+}

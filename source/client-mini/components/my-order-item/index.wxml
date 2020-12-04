@@ -1,0 +1,46 @@
+<wxs module="s" src="../../wxs/status.wxs" xmlns:wx=""></wxs>
+<view catch:tap="onGotoDetail"  class="container">
+    <view class="header">
+        <text>订单编号: {{_item.order_no}}</text>
+        <text style="color:{{s.statusTextColor(_item.status)}}">{{_item.statusText}}</text>
+    </view>
+    <view class="main">
+        <image mode="aspectFit" src="{{_item.snap_img}}" class="img"></image>
+        <!--                <text class="title hidden-text ">无误无误无误无误无误无误无误无误无误无误无误无误无误无无误无误无误无误无误无误无误无误无误无误无误无误无误</text>-->
+        <view class="description">
+            <text class="title hidden-text ">{{_item.snap_title}}</text>
+            <view class="counter">
+                <text>等 {{_item.total_count}} 件商品</text>
+            </view>
+        </view>
+    </view>
+    <view class="total-container">
+        <text style="margin-right:20rpx">共计 {{_item.total_count}} 件商品 , 实际支付 </text>
+        <l-price class="final-total-price"
+                 size="32"
+                 value="{{_item.final_total_price}}"
+                 color="#157658">
+        </l-price>
+    </view>
+    <view wx:if="{{_item.status==1}}" class="bottom">
+        <view class="bottom-left">
+            <text>剩余支付时间</text>
+            <l-countdown wx:if="{{_item.status === 1}}" l-class="countdown"
+                         l-class-time="countdown-time"
+                         bind:linend="onCountdownEnd"
+                         time-type="second"
+                         time="{{_item.leftPeriod}}"
+                         format="{%m}:{%s}"></l-countdown>
+        </view>
+        <l-button wx:if="{{_item.status === 1}}" bg-color="#9E2731"
+                  bind:lintap="onPay"
+                  l-class="pay-btn"
+                  catch:tap="none"
+                  width="100"
+                  height="48">
+            支 付
+        </l-button>
+    </view>
+</view>
+
+<l-loading></l-loading>

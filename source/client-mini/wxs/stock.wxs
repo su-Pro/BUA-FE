@@ -1,0 +1,13 @@
+// 仅剩不到十件
+function shortage(stock) {
+    if(stock < 10 && stock > 0){
+        return true
+    }
+    else{
+        false
+    }
+}
+
+module.exports= {
+    shortage: shortage
+}

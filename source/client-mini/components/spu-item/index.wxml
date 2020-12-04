@@ -1,0 +1,52 @@
+<wxs src="../../wxs/stock.wxs" module="s"></wxs>
+<wxs src="../../wxs/price.wxs" module="p"></wxs>
+<view class="sku-container" bind:tap = "onDetail">
+    <view class="image-container">
+        <view  wx:if="{{s.shortage(skuItem.stock)}}" class="image-stock-pinch">
+            <text>仅剩{{skuItem.stock}}件</text>
+        </view>
+        <image mode="aspectFit" class="left" src="{{skuItem.img}}"></image>
+    </view>
+
+    <view class="right">
+        <view class="description-container">
+            <view class="title-container">
+                <text class="title">{{skuItem.title}}</text>
+            </view>
+            <text class="sub-title">{{skuItem.sub_title}}</text>
+
+            <view class="activity">
+            <l-tag wx:if="{{p.shortagePrice(skuItem.price, skuItem.discount_price).discountPrice}}"
+                    size="mini"
+                    bg-color="#c93756"
+                    shape="circle"
+                    type="reading"
+                    height="24">
+                打折
+            </l-tag>
+            </view>
+
+        </view>
+
+        <view class="price-container">
+            <view class="spu-price">
+                <l-price value="{{p.shortagePrice(skuItem.price, skuItem.discount_price).mainprice}}"
+                         color="#157658"
+                         unit-size="20"
+                         autofix
+                         count-size="26"
+                         l-unit-class="l-price-unit">
+                </l-price>
+                <l-price
+                        wx:if="{{p.shortagePrice(skuItem.price, skuItem.discount_price).discountPrice}}"
+                        value="{{p.shortagePrice(skuItem.price, skuItem.discount_price).discountPrice}}"
+                        l-class="discount-price"
+                        size="22"
+                        color="#999"
+                        bold="400"
+                        deleted>
+                </l-price></view>
+            <s-cart-icon sku-item="{{skuItem}}" cart-count = "{{skuItem.count}}"></s-cart-icon>
+        </view>
+    </view>
+</view>

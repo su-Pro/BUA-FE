@@ -1,0 +1,86 @@
+.container{
+}
+
+.sleeve-coupon {
+    font-family: sleeve !important;
+    font-size: 30rpx !important;
+    font-style: normal;
+    color: #157658 !important;
+}
+
+.sleeve-order {
+    font-family: sleeve !important;
+    font-size: 34rpx !important;
+    font-style: normal;
+    color: #157658 !important;
+}
+
+.sleeve-address {
+    font-family: sleeve !important;
+    font-size: 30rpx !important;
+    font-style: normal;
+    color: #157658 !important;
+}
+
+.sleeve-sunny{
+    font-family: sleeve !important;
+    font-size: 36rpx !important;
+    font-style: normal;
+    color: #b96049 !important;
+}
+
+.sleeve-flower{
+    font-family: sleeve !important;
+    font-size: 34rpx !important;
+    font-style: normal;
+    color: #b96049 !important;
+    /*color: #d0a494 !important;*/
+}
+
+.main-container{
+    background-color: #ffffff;
+    padding-top: 30rpx;
+    padding-bottom: 10rpx;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    /*margin-top:20rpx;*/
+}
+
+.list{
+    margin-top: 30rpx;
+    box-sizing: border-box;
+    width: 670rpx;
+    /*padding: 30rpx;*/
+    /*box-shadow:0px 0px 8px 0px rgba(119,163,149,0.2);*/
+    /*margin-top:20rpx;*/
+}
+
+.no-line{
+    border-bottom: 0 !important;
+}
+
+.list-item{
+    color: #333333;
+    font-size:28rpx !important;
+}
+
+.right-desc{
+    color:#c0c6c9 !important;
+    font-size: 24rpx !important;
+}
+
+.logo-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20rpx;
+    margin-top:50rpx;
+}
+
+.logo{
+    width:200rpx;
+    height: 72rpx;
+}

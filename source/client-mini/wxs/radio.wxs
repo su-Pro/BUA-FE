@@ -1,0 +1,10 @@
+function currentCheck(currentIndex, index) {
+    if(currentIndex === index && checked){
+        return true
+    }
+    return false
+}
+
+module.exports ={
+    currentCheck:currentCheck
+}

@@ -1,0 +1,17 @@
+<l-segment bind:linchange="onSegmentChange" active-key="{{activeKey}}" class="segment" l-class="l-segment"
+           active-color="#157658" l-class-active="active" l-class-line="line">
+    <l-segment-item tab="已领取" key="1"></l-segment-item>
+    <l-segment-item tab="已使用" key="2"></l-segment-item>
+    <l-segment-item tab="已失效" key="3"></l-segment-item>
+</l-segment>
+<view class="container">
+    <block wx:for="{{availableList}}">
+        <s-coupon coupon="{{item}}" status="{{item.type}}"></s-coupon>
+    </block>
+    <block wx:for="{{usedList}}">
+        <s-coupon coupon="{{item}}" status="{{item.type}}"></s-coupon>
+    </block>
+    <block wx:for="{{expiredList}}">
+        <s-coupon coupon="{{item}}" status="{{item.type}}"></s-coupon>
+    </block>
+</view>

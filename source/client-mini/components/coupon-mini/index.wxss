@@ -1,0 +1,24 @@
+/* components/coupon-mini/index.wxss */
+
+.container{
+    width: 200rpx;
+    height: 48rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /*position: absolute;*/
+}
+
+.text{
+    z-index: 99;
+    font-size:20rpx;
+    color:#157658;
+}
+
+.bg{
+    width: 200rpx;
+    height: 48rpx;
+    position: absolute;
+}
+

@@ -1,0 +1,8 @@
+<!--<view wx:if="{{show}}" class="container">-->
+<view  class="container">
+    <image class="img" src="/components/imgs/empty.png"></image>
+    <text class="text">{{text}}</text>
+    <l-button wx:if="{{showBtn}}" bind:lintap="onTap" size="mini" l-class="btn">
+        {{btnText}}
+    </l-button>
+</view>

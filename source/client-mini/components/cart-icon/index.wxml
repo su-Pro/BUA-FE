@@ -1,0 +1,8 @@
+<view class="container" catch:tap = "onAddToCart">
+    <view class="cart-icon">
+        <image class="icon-img" src="../imgs/cart/cart5.png"></image>
+        <view wx:if="{{cartCount}}" class="cart-icon-count">
+            <text>{{cartCount}}</text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,77 @@
+.container{
+    box-sizing: border-box;
+    width: 750rpx;
+    min-height: 176rpx;
+    padding-top:40rpx;
+    background-color: #F6FBF9;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.address-container{
+    box-sizing: border-box;
+    width: 100%;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    padding-left:30rpx;
+    padding-right:20rpx;
+    justify-content: space-between;
+}
+
+.address-inner{
+    display: flex;
+    flex-direction: column;
+    width: 620rpx;
+}
+
+.base-info{
+    font-size:28rpx;
+    color: #333333;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+}
+
+.base-info l-icon{
+    margin-right: 30rpx;
+}
+
+/*.name{*/
+/*    margin-right: 30rpx;*/
+/*}*/
+
+.base-info > text:nth-child(2){
+    margin-right: 30rpx;
+}
+.address-info{
+    margin-top: 10rpx;
+    font-size:28rpx;
+    color: #666666;
+    padding-left:60rpx;
+}
+
+.sleeve {
+    font-family: sleeve !important;
+    font-size: 36rpx;
+    font-style: normal;
+    color: #157658 !important;
+}
+
+.bottom-img{
+    /*bottom: 0;*/
+    width: 750rpx;
+    height: 8rpx;
+    margin-top: 30rpx;
+}
+
+.btn{
+    border-color: #157658 !important;
+    color:#157658 !important;
+}
+
+.address-container{
+
+}

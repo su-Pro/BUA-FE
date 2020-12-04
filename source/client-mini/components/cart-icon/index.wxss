@@ -1,0 +1,28 @@
+.container{
+    height: 25px;
+    width: 25px;
+}
+.cart-icon{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.icon-img{
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+.cart-icon-count{
+    height: 15px;
+    width: 15px;
+    line-height: 15px;
+    font-size: 12px;
+    border-radius: 50%;
+    background: rgb(202, 104, 104);
+    position: absolute;
+    top:-6px;
+    right: -6px;
+    display: flex;
+    justify-content:center;
+    align-content:center;
+}

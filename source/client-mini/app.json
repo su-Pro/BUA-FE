@@ -1,0 +1,79 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/my/my",
+    "pages/coupon/coupon",
+    "pages/my-coupon/my-coupon",
+    "pages/my-order/my-order",
+    "pages/order/order"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "一份外卖",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "borderStyle": "black",
+    "color": "#333333",
+    "selectedColor": "#333333",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/home/home",
+        "iconPath": "imgs/tabbar/home@dis.png",
+        "selectedIconPath": "imgs/tabbar/home.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "imgs/tabbar/category@dis.png",
+        "selectedIconPath": "imgs/tabbar/category.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "imgs/tabbar/cart@dis.png",
+        "selectedIconPath": "imgs/tabbar/cart.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "imgs/tabbar/my@dis.png",
+        "selectedIconPath": "imgs/tabbar/my.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "l-grid": "/miniprogram_npm/lin-ui/grid/index",
+    "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
+    "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
+    "s-spu-preview": "/components/spu-preview/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-price": "/miniprogram_npm/lin-ui/price/index",
+    "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
+    "s-empty": "/components/empty/index",
+    "s-cart-item": "/components/cart-item/index",
+    "l-counter": "/miniprogram_npm/lin-ui/counter/index",
+    "s-cart-icon": "components/cart-icon/index",
+    "s-counter": "components/counter/index",
+    "l-tag": "/miniprogram_npm/lin-ui/tag/index",
+    "s-checkbox": "/components/checkbox/index",
+    "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index",
+    "l-badge": "/miniprogram_npm/lin-ui/badge/index",
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index",
+    "l-list": "/miniprogram_npm/lin-ui/list/index",
+    "s-coupon-mini": "/components/coupon-mini/index",
+    "s-coupon": "/components/coupon/index",
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index",
+    "s-address": "/components/address/index",
+    "s-order-sku-item": "/components/order-sku-item/index",
+    "l-segment": "/miniprogram_npm/lin-ui/segment/index",
+    "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index",
+    "l-countdown": "/miniprogram_npm/lin-ui/countdown/index"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

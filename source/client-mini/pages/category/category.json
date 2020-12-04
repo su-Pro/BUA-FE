@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mp-vtabs": "../../components/vtabs/index",
+    "s-spu-item": "../../components/spu-item/index",
+    "mp-vtabs-content": "../../components/vtabs-content/index"
+  }
+}

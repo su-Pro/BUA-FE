@@ -1,0 +1,7 @@
+<!--pages/coupon/coupon.wxml-->
+<!--优惠券列表-->
+<view class="container">
+    <block wx:for="{{coupons}}">
+        <s-coupon coupon="{{item}}" status="0"></s-coupon>
+    </block>
+</view>

@@ -1,0 +1,34 @@
+<wxs src="../../wxs/price.wxs" module="p"></wxs>
+
+<view data-pid="{{data.id}}"  bind:tap="onItemTap" class="container">
+    <image bind:load="onImgLoad" style="width:{{w}}rpx;height:{{h}}rpx;" src="{{data.img}}"></image>
+    <view class="content-container">
+        <text class="title">{{data.title}}</text>
+        <view class="tags">
+            <block wx:for="{{tags}}" wx:key="index">
+                <l-tag l-class="l-tag" size="super-mini">{{item}}</l-tag>
+            </block>
+        </view>
+
+        <view class="box-bottom">
+        <view class="price-row">
+            <l-price value="{{p.shortagePrice(data.price, data.discount_price).mainprice}}"
+                     color="#157658"
+                     unit-size="20"
+                     autofix
+                     count-size="26"
+                     l-unit-class="l-price-unit">
+            </l-price>
+            <l-price
+                    wx:if="{{p.shortagePrice(data.price, data.discount_price).discountPrice}}"
+                    value="{{p.shortagePrice(data.price, data.discount_price).discountPrice}}"
+                    l-class="discount-price"
+                    size="22"
+                    color="#999"
+                    bold="400"
+                    deleted>
+            </l-price></view>
+        <s-cart-icon sku-item="{{data}}" cart-count = "{{cartCount}}"></s-cart-icon>
+        </view>
+    </view>
+</view>
